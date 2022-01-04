@@ -10,6 +10,14 @@ botaoAdicionar.addEventListener("click", function(event){
 
      //cria a tr e td do paciente
     var pacienteTr = montaTr(paciente)
+
+    var erro = validaPaciente(paciente)
+        
+    if(erro.length > 0) {
+        var mensagemErro = document.querySelector("#mensagem-erro")
+        mensagemErro.textContent = erro
+        return;
+    }
      
      //adicionando o paciente na tabela
     var tabela = document.querySelector("#tabela-pacientes")
@@ -75,7 +83,14 @@ botaoAdicionar.addEventListener("click", function(event){
         return td;
     }   
 
+    function validaPaciente(paciente){
+        if(validaPeso(paciente.peso )){
+            return true
 
+        }else { 
+            return "O peso é inválido"
+        }
+    }
     
 
     
