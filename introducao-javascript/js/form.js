@@ -11,11 +11,11 @@ botaoAdicionar.addEventListener("click", function(event){
      //cria a tr e td do paciente
     var pacienteTr = montaTr(paciente)
 
-    var erro = validaPaciente(paciente)
+    var erros = validaPaciente(paciente)
         
-    if(erro.length > 0) {
+    if(erros.length > 0) {
         var mensagemErro = document.querySelector("#mensagem-erro")
-        mensagemErro.textContent = erro
+        mensagemErro.textContent = erros
         return;
     }
      
@@ -84,12 +84,17 @@ botaoAdicionar.addEventListener("click", function(event){
     }   
 
     function validaPaciente(paciente){
-        if(validaPeso(paciente.peso )){
-            return true
+        var erros = []
 
-        }else { 
-            return "O peso é inválido"
+        if(!validaPeso(paciente.peso )) erros.push("Peso é inválido") // push adiciona objetos no array
+        // caso tenha apenas um if, o js entende ao deixarmos tudo em uma linha e sem {} como no exemplo acima.
+        
+
+        if(!validaAltura(paciente.altura)){
+            erros.push("Altura é inválida!")
         }
+
+        return erros
     }
     
 
