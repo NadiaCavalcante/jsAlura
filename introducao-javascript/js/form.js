@@ -8,8 +8,8 @@ botaoAdicionar.addEventListener("click", function(event){
     //obtem informações do paciente do form
     var paciente = obtemPacienteForm(form)
 
-     //cria a tr e td do paciente
-    var pacienteTr = montaTr(paciente)
+     
+    // var pacienteTr = montaTr(paciente)
 
     var erros = validaPaciente(paciente) 
     console.log(erros)    
@@ -17,17 +17,24 @@ botaoAdicionar.addEventListener("click", function(event){
        exibeMensagensDeErro(erros);
         return;
     }
-     
-     //adicionando o paciente na tabela
-    var tabela = document.querySelector("#tabela-pacientes")
 
-    tabela.appendChild(pacienteTr)
-    
+    adicionarPacienteNaTabela(paciente)
+     
     form.reset() //apaga os dados inseridos no campo depois que vc adiciona
     var mensagensErro = document.querySelector("#mensagens-erro")
     mensagensErro.innerHTML = ""
 })
 
+function adicionarPacienteNaTabela(paciente){
+    //cria a tr e td do paciente
+    var pacienteTr = montaTr(paciente)
+
+     //adicionando o paciente na tabela
+     var pacienteTr = montaTr(paciente)
+     var tabela = document.querySelector("#tabela-pacientes")
+     tabela.appendChild(pacienteTr)
+    
+}
     function exibeMensagensDeErro(erros){
         var ul = document.querySelector("#mensagens-erro")
         ul.innerHTML = "" //controla elemento interno do HTML - InnerHTML - ao deixar como vazio, apresenta a mensgem de validação apenas uma vez ( este innerHTML foi utilizado para ñ repiter as mensagens de erro quando houvesse no momento da validação!)
